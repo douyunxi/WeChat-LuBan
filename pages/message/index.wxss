@@ -1,0 +1,29 @@
+/* pages/my/message/messageDetail.wxss */
+.unread{
+  color: #030303;
+}
+.readed{
+  color: #cccccc;
+}
+.message-block{
+  background-color: #ffffff;
+  display: block;
+  padding: 10px;
+  margin: 5px 10px;
+}
+.message-block .title{
+  display: block;
+  font-size: 18px;
+}
+.message-block .content{
+  display: block;
+  margin-top:10px; 
+  text-indent: 2rem;
+  font-size: 14px;
+}
+.message-block .time{
+  display: block;
+  margin-top:10px; 
+  font-size: 12px;
+  text-align: right;
+}

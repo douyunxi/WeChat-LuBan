@@ -1,0 +1,30 @@
+/* components/taskBlock.wxss */
+.task-block{
+  background-color: #ffffff;
+  display: block;
+  padding: 10px;
+  margin: 1%;
+}
+.task-block .title{
+  display: block;
+  font-size: 18px;
+}
+.task-block .content{
+  display: block;
+  margin-top:10px; 
+  text-indent: 2rem;
+  font-size: 14px;
+}
+.task-foot{
+  color:#e64340;
+  display: inline-block;
+  width:50%;
+  margin-top:10px; 
+  font-size: 12px;
+}
+.task-foot.money{
+  text-align: left;
+}
+.task-foot.time{
+  text-align: right;
+}

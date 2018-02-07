@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "任务单",
+  "usingComponents": {
+    "messageItem": "/components/messageItem/messageItem"
+  }
+}

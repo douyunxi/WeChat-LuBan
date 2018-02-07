@@ -1,0 +1,8 @@
+<!--components/taskBlock.wxml 任务详情-->
+<view class="task-block">
+  <view class="title">{{title}}</view>
+  <image wx:if="{{icon}}" src="{{icon}}"></image>
+  <view class="content">{{content}}</view>
+  <view class="task-foot money">施工款：{{money}} 元</view>
+  <view class="task-foot time">施工时间：{{time}}</view>
+</view>

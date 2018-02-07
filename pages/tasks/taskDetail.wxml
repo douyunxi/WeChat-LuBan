@@ -1,0 +1,4 @@
+<!--pages/tasks/taskDetail.wxml 任务详情-->
+<view>
+  <taskBlock title="{{title}}" content="{{content}}" money="{{money}}" time="{{time}}"/>
+</view>

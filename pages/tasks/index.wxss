@@ -1,0 +1,33 @@
+/* pages/tasks/index.wxss */
+.show-card{
+  display: inline-block;
+  border-bottom: solid 1px #b2b2b2;
+  background-color: #ffffff;
+  width:49%;
+  margin:0 0.5% 1%;
+}
+.show-card:nth-child(1){
+  color:#e64340;
+}
+.show-card:nth-child(2){
+  color:#09bb07;
+}
+
+.show-card .title{
+  padding:10px 0 0 20px;
+  font-size: 16px;
+}
+
+.show-card .number{
+  text-align: center;
+  padding: 5px 0;
+  font-size: 14px;
+}
+
+.container{
+  background-color: #ffffff;
+}
+
+.unfinished-tasks{
+  margin-bottom:1%;
+}

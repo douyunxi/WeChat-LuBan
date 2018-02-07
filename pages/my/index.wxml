@@ -1,0 +1,18 @@
+<!--index.wxml-->
+<view class="container">
+  <view  bindtap="bindViewTap" class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </view>
+  <view class="info_list">
+    <block wx:for="{{userListInfo}}">
+        <!--<view class="message-cell">
+            <image src="{{item.icon}}"></image>
+            <view> {{item.text}} </view>
+            <view wx:if="{{item.isunread}}" class="badge">{{item.unreadNum}}</view>
+            <image src="../../images/icon-arrowdown.png" class="with_arrow"></image>
+        </view>-->
+        <messageItem icon="{{item.icon}}" title="{{item.text}}" isunread="{{item.isunread}}" unreadNum="{{item.unreadNum}}" url="{{item.url}}"/>
+    </block>
+  </view>
+</view>

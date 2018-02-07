@@ -1,0 +1,6 @@
+<!--pages/my/message/messageDetail.wxml-->
+<view>
+  <block wx:for="{{messageList}}">
+    <messageBlock title="{{item.title}}" content="{{item.content}}" time="{{item.time}}" type="{{item.type}}"/>
+  </block>
+</view>

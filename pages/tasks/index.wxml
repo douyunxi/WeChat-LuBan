@@ -1,0 +1,23 @@
+<!--pages/tasks/index.wxml 任务单-->
+<view>
+  <view class="show-card">
+    <view class="title">待完成</view>
+    <view class="number">3</view>
+  </view>
+  <view class="show-card">
+    <view class="title">已完成</view>
+    <view class="number">5</view>
+  </view>
+</view>
+
+<view class="unfinished-tasks container">
+  <block wx:for="{{unfinishedTask}}">
+    <messageItem icon="{{item.icon}}" title="{{item.text}}" isunread="{{item.isunread}}" unreadNum="{{item.unreadNum}}" url="{{item.url}}"/>
+  </block>
+</view>
+
+<view class="finished-tasks container">
+  <block wx:for="{{finishedTask}}">
+    <messageItem icon="{{item.icon}}" title="{{item.text}}" isunread="{{item.isunread}}" unreadNum="{{item.unreadNum}}" url="{{item.url}}"/>
+  </block>
+</view>

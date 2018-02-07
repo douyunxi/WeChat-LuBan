@@ -1,0 +1,32 @@
+/* components/messageBlock/messageBlock.wxss */
+.unread{
+  color: #353535;
+}
+.readed{
+  color: #b2b2b2;
+}
+.message-block{
+  background-color: #ffffff;
+  display: block;
+  padding: 10px;
+  margin: 1%;
+}
+.message-block .title{
+  display: block;
+  font-size: 18px;
+}
+.message-block .content{
+  display: block;
+  margin-top:10px; 
+  text-indent: 2rem;
+  font-size: 14px;
+}
+.message-block .time{
+  display: block;
+  margin-top:10px; 
+  font-size: 12px;
+  text-align: right;
+}
+button{
+  margin: 5px 0;
+}
