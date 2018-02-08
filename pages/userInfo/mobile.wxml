@@ -1,0 +1,5 @@
+<!--pages/userInfo/mobile.wxml 修改手机号码-->
+<view class='container'>
+  <input  maxlength="13" placeholder="请输入手机号码" value='{{mobileNum}}'/>
+</view>
+<button type="primary" bindtap='submit'>确认</button>

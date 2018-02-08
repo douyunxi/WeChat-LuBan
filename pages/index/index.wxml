@@ -3,48 +3,40 @@
     <view>
         <swiper class="swiper_box" indicator-dots="{{indicatorDots}}" vertical="{{vertical}}"
                 autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange="swiperchange" circular>
-            <block wx:for="{{images}}">
                 <swiper-item>
-                    <image src="{{item.picurl}}" class="slide-image"/>
+                    <image src="/images/banner1.png" class="slide-image"/>
                 </swiper-item>
-            </block>
+                <swiper-item>
+                    <image src="/images/banner2.png" class="slide-image"/>
+                </swiper-item>
+                <swiper-item>
+                    <image src="/images/banner3.png" class="slide-image"/>
+                </swiper-item>
+                <swiper-item>
+                    <image src="/images/banner4.png" class="slide-image"/>
+                </swiper-item>
         </swiper>
     </view>
 
     <view class="text">
         <view class="line_flag"></view>
-        <text>主题馆</text>
+        <text>成功案例</text>
     </view>
     
-    <view class="venues_box">
-        <view class="venues_list">
-            <block wx:for="{{venuesItems}}">
-                <view class="venues_item">
-                    <navigator url="../brand/index?id={{item.id}}">
-                        <image src="{{item.smallpic}}"/>
-                    </navigator>
-                </view>
-            </block>
-        </view>
+    <view class='title'>
+      <image class="icon" src="/images/worker1.png"/>
+      <text>北京 李师傅</text>
+      <image class="bg" src="/images/image1.jpg"/>
+      <view>天津市XXXXXXXX建筑</view>
     </view>
-
-    <view class="text">
-        <view class="line_flag"></view>
-        <text>环球精选</text>
+    <view class='title'>
+      <image class="icon" src="/images/worker1.png"/>
+      <text>北京 李师傅</text>
+      <image class="bg" src="/images/image2.jpg"/>
+      <view>北京市朝阳区CBD双子大厦</view>
     </view>
-
-    <view class="choice_box">
-        <view class="choice_list">
-            <block wx:for="{{choiceItems}}">
-                <navigator url="../details/index?id={{item.id}}">
-                    <view class="choice_item">
-                        <image src="{{item.goodspics}}"/>
-                        <view class="title">{{item.title}}</view>
-                    </view>
-                </navigator>
-            </block>
-        </view>
-    </view>
+    
+ 
 
     <loading hidden="{{loadingHidden}}">
         加载中...

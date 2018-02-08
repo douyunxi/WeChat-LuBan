@@ -1,3 +1,6 @@
 {
-    "navigationBarTitleText": "工资单"
+    "navigationBarTitleText": "工资单",
+    "usingComponents": {
+      "infoItem": "/components/infoItem/infoItem"
+    }
 }

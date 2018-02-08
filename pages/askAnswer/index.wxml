@@ -1,0 +1,15 @@
+<!--pages/askAnswer/index.wxml常见问题-->
+<view class='container'>
+  <view class='ask'>
+    1.常见问题?
+  </view>
+  <view class='answer'>
+      回答......
+  </view>
+  <view class='ask'>
+    2.常见问题?
+  </view>
+  <view class='answer'>
+      回答......
+  </view>
+</view>

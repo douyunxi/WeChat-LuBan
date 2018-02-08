@@ -1,5 +1,5 @@
 <!--components/messageBlock/messageBlock.wxml 消息详情-->
-<view class="message-block unread" bindtap='_read'>
+<view class="message-block unread" bindtap='read'>
   <text class="title">{{title}}</text>
   <image wx:if="{{icon}}" src="{{icon}}"></image>
    
@@ -8,9 +8,7 @@
   <text class="time">{{time}}</text>
   
   <block wx:if="{{type=='task'}}">
-    <button type="primary" loading="" plain=""
-          hover-class="other-button-hover">接单</button>
-    <button type="default"  loading="" plain=""
-    hover-class="other-button-hover"> 拒绝 </button>
+    <button type="primary" bindtap="ok">接单</button>
+    <button type="default" bindtap="cancel">拒绝</button>
  </block>
 </view>

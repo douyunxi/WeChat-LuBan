@@ -3,5 +3,5 @@
   <image src="{{icon}}"></image>
   <view> {{title}} </view>
   <view wx:if="{{isunread}}" class="badge">{{unreadNum}}</view>
-  <image src="../../images/icon-arrowdown.png" class="with_arrow"></image>
+  <image src="../../images/icon-arrowdown.png" class="with_arrow" wx:if="{{url}}"></image>
 </view>

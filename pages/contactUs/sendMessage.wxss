@@ -1,0 +1,7 @@
+/* pages/contactUs/sendMessage.wxss */
+textarea{
+  background-color: #ffffff;
+  width: 100%;
+  font-size: 14px;
+  padding: 10px;
+}

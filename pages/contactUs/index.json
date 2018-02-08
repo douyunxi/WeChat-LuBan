@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "我的信息",
+  "navigationBarTitleText": "联系客服",
   "usingComponents": {
     "infoItem": "/components/infoItem/infoItem"
   }

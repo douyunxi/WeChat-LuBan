@@ -1,0 +1,10 @@
+/* pages/userInfo/mobile.wxss */
+.container{
+  background: #ffffff;
+  font-size: 16px;
+}
+input{
+   padding: 10px 30px;
+   text-align: center;
+   color: #353535;
+}

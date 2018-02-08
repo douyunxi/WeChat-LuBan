@@ -15,10 +15,12 @@ Page( {
       url: "/pages/userInfo/index"
     }, {
       icon: '../../images/iconfont-kefu.png',
-      text: '联系客服'
+      text: '联系客服',
+      url:'/pages/contactUs/index'
     }, {
       icon: '../../images/iconfont-help.png',
-      text: '常见问题'
+      text: '常见问题',
+      url:'/pages/askAnswer/index'
     }]
   },
 

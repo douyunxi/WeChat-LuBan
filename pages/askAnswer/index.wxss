@@ -1,0 +1,11 @@
+/* pages/askAnswer/index.wxss */
+.container{
+  background-color: #ffffff;
+  font-size: 14px;
+  padding: 20px;
+}
+
+.container .ask{
+  margin:10px 0;
+  color:#576b95;
+}

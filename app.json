@@ -10,7 +10,12 @@
     "pages/userInfo/index",
     "pages/message/index",
     "pages/tasks/taskDetail",
-    "pages/tasks/index"
+    "pages/tasks/index",
+    "pages/userInfo/mobile",
+    "pages/askAnswer/index",
+    "pages/contactUs/index",
+    "pages/contactUs/sendMessage",
+    "pages/userInfo/identificationCard"
   ],
   "window": {
     "backgroundTextStyle": "white",

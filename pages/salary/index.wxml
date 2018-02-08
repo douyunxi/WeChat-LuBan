@@ -1,4 +1,25 @@
-<view class="container">
-  <image src="{{cartImg}}" class="cart-image"/>
-  <view>{{tipWords}}</view>
+<!--pages/salary/index.wxml 工资单-->
+<view>
+  <view class="show-card">
+    <view class="title">审核中</view>
+    <view class="total">{{processing.total}}元</view>
+    <view class="count">{{processing.count}}笔</view>
+  </view>
+  <view class="show-card">
+    <view class="title">已发放</view>
+    <view class="total">{{processing.total}}元</view>
+    <view class="count">{{processing.count}}笔</view>
+  </view>
+</view>
+
+<view class="unfinished-tasks container">
+  <block wx:for="{{unfinishedTask}}">
+    <infoItem icon="{{item.icon}}" title="{{item.title}}元" content="{{item.content}}" url="{{item.url}}"/>
+  </block>
+</view>
+
+<view class="finished-tasks container">
+  <block wx:for="{{finishedTask}}">
+    <infoItem icon="{{item.icon}}" title="{{item.title}}元" content="{{item.content}}" url="{{item.url}}"/>
+  </block>
 </view>

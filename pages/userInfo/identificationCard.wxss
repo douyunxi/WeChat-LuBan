@@ -1,0 +1,17 @@
+/* pages/userInfo/identificationCard.wxss */
+view.container{
+  background-color: #ffffff;
+}
+input{
+  margin: 20px;
+  padding: 10px 0px;
+  font-size:14px; 
+  border-bottom:solid 1px #888888; 
+}
+view.img{
+   text-align: center;
+}
+button{
+  width: 90%;
+  margin: 20px;
+}

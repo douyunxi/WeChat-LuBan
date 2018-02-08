@@ -1,0 +1,7 @@
+<!--components/infoItem.wxml-->
+<view class="info-cell" bindtap='_gotoDetail' callback="{{callback}}">
+  <image src="{{icon}}"></image>
+  <view class="title"> {{title}} </view>
+  <view wx:if="{{content}}" class="content">{{content}}</view>
+  <image src="../../images/icon-arrowdown.png" class="with_arrow" wx:if="{{url}}"></image>
+</view>

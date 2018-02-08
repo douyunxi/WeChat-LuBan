@@ -1,0 +1,10 @@
+<!--pages/userInfo/identificationCard.wxml 我的——》个人信息——》身份认证-->
+<view class='container'>
+  <!--<label>身份证号码：</label>-->
+  <input placeholder='请输入身份证号码'/>
+  <view class='img'>
+    <image src='/images/idcard.png' bindtap='chooseImage'/>
+    <image src='/images/user-with-idcard.png' bindtap='chooseImage'/>
+  </view>
+  <button type='primary'>上传</button>
+</view>
