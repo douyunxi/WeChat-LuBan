@@ -20,7 +20,7 @@
   "window": {
     "backgroundTextStyle": "white",
     "navigationBarTextStyle": "white",
-    "navigationBarTitleText": "鲁班到家",
+    "navigationBarTitleText": "鲁班来啦",
     "navigationBarBackgroundColor": "#292929",
     "backgroundColor": "#f2f2f2",
     "enablePullDownRefresh": true
