@@ -10,7 +10,12 @@ Page({
   },
   goToIndex:function(){
     wx.switchTab({
-      url: '/pages/index/index',
+      url: '/pages/index/index'
+    });
+  },
+  goToRegister:function(){
+    wx.navigateTo({
+      url: '/pages/register/index'
     });
   },
   onLoad:function(){

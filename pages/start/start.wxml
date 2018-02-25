@@ -18,7 +18,7 @@
         <view class="confirm-btn" bindtap='goToIndex' wx:if="{{isRegistered}}">
           <text>进入主站</text>
         </view>
-        <view class="confirm-btn" bindtap='goToIndex' wx:if="{{!isRegistered}}">
+        <view class="confirm-btn" bindtap='goToRegister' wx:if="{{!isRegistered}}">
           <text>注册</text>
         </view>
         <view class="confirm-btn" bindtap='goToIndex' wx:if="{{!isRegistered}}">

@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/start/start",
+    "pages/register/index",
     "pages/index/index",
     "pages/classify/index",
     "pages/salary/index",

@@ -11,6 +11,14 @@ Page( {
       url:"/pages/message/index"
     }, {
       icon: '../../images/iconfont-dingdan.png',
+      text: '任务单',
+      url: "/pages/tasks/index"
+    }, {
+      icon: '../../images/iconfont-dingdan.png',
+      text: '工资单',
+      url: "/pages/salary/index"
+    }, {
+      icon: '../../images/iconfont-dingdan.png',
       text: '个人信息',
       url: "/pages/userInfo/index"
     }, {
