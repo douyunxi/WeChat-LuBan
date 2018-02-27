@@ -11,13 +11,15 @@ App({
         if (res.code) {
           //发起网络请求
           wx.request({
-            url: 'http://localhost/login',
+            url: self.globalData.domain+'/login',
+            header: self.globalData.header,
             data: {
               code: res.code
             },
             success: function (data) {
               console.log(data)
-              wx.setStorageSync('sessionId', data.data)
+              wx.setStorageSync('sessionId', data.data);
+              self.globalData.header.cookie='JSESSIONID=' + data.data;
               wx.getUserInfo({
                 success: function (res) {
                   var userInfo = res.userInfo
@@ -52,6 +54,8 @@ App({
 
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    domain:"http://127.0.0.1",
+    header: { 'cookie': '' } //这里还可以加入其它需要的请求头，比如'x-requested-with': 'XMLHttpRequest'表示ajax提交，微信的请求时不会带上这个的
   }
 })

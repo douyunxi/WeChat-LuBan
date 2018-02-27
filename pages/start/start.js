@@ -25,12 +25,11 @@ Page({
       title: wx.getStorageSync('mallName')
     })*/
     app.getUserInfo(function(userInfo){
-      that.setData({
-        userInfo: userInfo
-      });
+      app.globalData.userInfo=userInfo;
       //是否注册用户
       wx.request({
-        url: 'http://localhost/isRegistered',
+        url: app.globalData.domain+'/isRegistered',
+        header: app.globalData.header,
         success: function (res) {
           console.log("是否注册用户", res.data)
           that.setData({

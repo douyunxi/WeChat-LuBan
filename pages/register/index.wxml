@@ -4,7 +4,7 @@
         <view class="row-wrap">
             <view class="label">真实姓名</view>
             <view class="label-right">
-                <input name="linkMan" class="input" type="text" placeholder="姓名" value="{{addressData.linkMan}}{{wxaddress.userName}}"/>
+                <input name="realName" class="input" type="text" placeholder="姓名" value="{{addressData.realName}}{{wxaddress.userName}}"/>
             </view>
         </view>
         <view class="row-wrap">
@@ -41,7 +41,7 @@
         <view class="row-wrap">
             <view class="label">邮政编号</view>
             <view class="label-right">
-                <input name="code" class="input" type="text" value="{{addressData.code}}{{wxaddress.postalCode}}"/>
+                <input name="postalcode" class="input" type="text" value="{{addressData.code}}{{wxaddress.postalCode}}"/>
             </view>
         </view>
     </view>

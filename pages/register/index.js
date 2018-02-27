@@ -1,6 +1,6 @@
 var commonCityData = require('../../utils/city.js')
 //获取应用实例
-var app = getApp()
+var app = getApp();
 Page({
   data: {
     provinces:[],
@@ -14,19 +14,19 @@ Page({
     selDistrictIndex:0
   },
   bindCancel:function () {
-    wx.navigateBack({})
+    wx.navigateBack({});//关闭当前页面，返回上一页面
   },
   bindSave: function(e) {
     var that = this;
-    var linkMan = e.detail.value.linkMan;
+    var realName = e.detail.value.realName;
     var address = e.detail.value.address;
     var mobile = e.detail.value.mobile;
-    var code = e.detail.value.code;
+    var postalcode = e.detail.value.postalcode;
 
-    if (linkMan == ""){
+    if (realName == ""){
       wx.showModal({
         title: '提示',
-        content: '请填写联系人姓名',
+        content: '请填写真实姓名',
         showCancel:false
       })
       return
@@ -70,14 +70,14 @@ Page({
       })
       return
     }
-    if (code == ""){
+    /*if (postalcode == ""){
       wx.showModal({
         title: '提示',
         content: '请填写邮编',
         showCancel:false
       })
       return
-    }
+    }*/
     var apiAddoRuPDATE = "add";
     var apiAddid = that.data.id;
     if (apiAddid) {
@@ -86,17 +86,21 @@ Page({
       apiAddid = 0;
     }
     wx.request({
-      url: 'https://api.it120.cc/' + app.globalData.subDomain + '/user/shipping-address/' + apiAddoRuPDATE,
+      url: app.globalData.domain + '/register/',
+      header: app.globalData.header,
       data: {
         token: app.globalData.token,
         id: apiAddid,
         provinceId: commonCityData.cityData[this.data.selProvinceIndex].id,
         cityId: cityId,
         districtId: districtId,
-        linkMan:linkMan,
+        nickname: app.globalData.userInfo.nickName,
+        avatarUrl: app.globalData.userInfo.avatarUrl,
+        gender: app.globalData.userInfo.gender,
+        realName: realName,
         address:address,
         mobile:mobile,
-        code:code,
+        postalcode: postalcode,
         isDefault:'true'
       },
       success: function(res) {
