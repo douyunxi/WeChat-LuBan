@@ -19,13 +19,16 @@ Page({
     });
   },
   onLoad:function(){
-    console.log("onLoad")
     var that = this
     /*wx.setNavigationBarTitle({
       title: wx.getStorageSync('mallName')
     })*/
     app.getUserInfo(function(userInfo){
       app.globalData.userInfo=userInfo;
+      //更新数据
+      that.setData({
+        userInfo: userInfo
+      });
       //是否注册用户
       wx.request({
         url: app.globalData.domain+'/isRegistered',
