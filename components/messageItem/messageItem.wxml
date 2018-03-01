@@ -2,6 +2,6 @@
 <view class="message-cell" bindtap='_gotoDetail' callback="{{callback}}">
   <image src="{{icon}}"></image>
   <view> {{title}} </view>
-  <view wx:if="{{isunread}}" class="badge">{{unreadNum}}</view>
+  <view wx:if="{{unreadNum}}" class="badge">{{unreadNum}}</view>
   <image src="../../images/icon-arrowdown.png" class="with_arrow" wx:if="{{url}}"></image>
 </view>

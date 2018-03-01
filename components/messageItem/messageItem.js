@@ -14,11 +14,6 @@ Component({
       type: String,
       value: ''
     },
-    //是否未读
-    isunread: {
-      type: Boolean,
-      value: false
-    },
     //未读数量
     unreadNum: {
       type: Number,

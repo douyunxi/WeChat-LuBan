@@ -24,6 +24,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.request({
+      url: app.globalData.domain + '/getMessages',
+      header: app.globalData.header,
+      success: function (res) {
+
+      }
+    });
     this.setData({
       messageList: messageList
     })

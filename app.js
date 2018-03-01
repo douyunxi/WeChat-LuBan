@@ -1,16 +1,17 @@
 //app.js
 App({
   onLaunch: function () {
-
+  
   },
   getUserInfo: function (cb) {
+    var that = this;
     var userInfo=wx.getStorageSync('userInfo');
     if(userInfo){
+      that.globalData.header.cookie = 'JSESSIONID=' + wx.getStorageSync('sessionId');
       console.log('getUserInfo-->'+userInfo.nickName)
       cb(userInfo);
     }
     else{
-      var that = this;
       //调用登录接口
       wx.login({
         success: function (res) {

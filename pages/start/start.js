@@ -44,11 +44,8 @@ Page({
     
   },
   onShow:function(){
-    console.log("onShow")
-    
   },
   onReady: function(){
-    console.log("onReady")
     var that = this;
     setTimeout(function(){
       that.setData({
