@@ -6,7 +6,7 @@ Page({
     remind: '加载中',
     angle: 0,
     userInfo: {},
-    isRegistered:false
+    userType:null
   },
   goToIndex:function(){
     wx.switchTab({
@@ -30,7 +30,14 @@ Page({
         userInfo: userInfo
       });
       //是否注册用户
-      wx.request({
+      var userType=wx.getStorageSync('userType')
+      console.log("userType-》" + userType)
+      that.setData({
+        //userType: userType
+        userType: null
+      })
+      
+      /*wx.request({
         url: app.globalData.domain+'/isRegistered',
         header: app.globalData.header,
         success: function (res) {
@@ -39,7 +46,7 @@ Page({
             isRegistered: res.data
           });
         }
-      });
+      });*/
     })
     
   },

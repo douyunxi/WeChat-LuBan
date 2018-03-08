@@ -3,6 +3,10 @@ var commonCityData = require('../../utils/city.js')
 var app = getApp();
 Page({
   data: {
+    userTypes: [{ value: 2, text: "我是墙纸工" }, { value: 1, text:"我要贴墙纸"}],
+    userTypesText:[],
+    selUserType: '请选择',
+    selUserTypeValue:"",
     provinces:[],
     citys:[],
     districts:[],
@@ -89,19 +93,19 @@ Page({
       url: app.globalData.domain + '/register/',
       header: app.globalData.header,
       data: {
-        token: app.globalData.token,
-        id: apiAddid,
+        //token: app.globalData.token,
+        //id: apiAddid,
         provinceId: commonCityData.cityData[this.data.selProvinceIndex].id,
         cityId: cityId,
         districtId: districtId,
+        address: address,
         nickname: app.globalData.userInfo.nickName,
+        realName: realName,
         avatarUrl: app.globalData.userInfo.avatarUrl,
         gender: app.globalData.userInfo.gender,
-        realName: realName,
-        address:address,
+        type: that.data.selUserTypeValue,
         mobile:mobile,
-        postalcode: postalcode,
-        isDefault:'true'
+        postalcode: postalcode
       },
       success: function(res) {
         if (res.data.code != 0) {
@@ -118,6 +122,15 @@ Page({
         wx.navigateBack({})
       }
     })
+  },
+  initUserType:function(){
+    var userTypesText = [];
+    for (var i = 0; i < this.data.userTypes.length;i++){
+      userTypesText.push(this.data.userTypes[i].text);
+    }
+    this.setData({
+      userTypesText: userTypesText
+    });
   },
   initCityData:function(level, obj){
     if(level == 1){
@@ -148,6 +161,13 @@ Page({
       });
     }
     
+  },
+  bindUserTypeChange: function (event){
+    console.log(event)
+    this.setData({
+      selUserType: this.data.userTypes[event.detail.value].text,
+      selUserTypeValue: this.data.userTypes[event.detail.value].value
+    })
   },
   bindPickerProvinceChange:function(event){
     var selIterm = commonCityData.cityData[event.detail.value];
@@ -182,6 +202,7 @@ Page({
   },
   onLoad: function (e) {
     var that = this;
+    this.initUserType();
     this.initCityData(1);
     var id = e.id;
     if (id) {

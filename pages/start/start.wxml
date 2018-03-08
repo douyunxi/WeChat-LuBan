@@ -15,18 +15,15 @@
          <image class="smalltitle" src="/images/more/confirm-word1.png"></image>
         <!--<text class="subtitle">专业墙纸施工</text>
         <text class="subtitle">追求匠人品质</text>-->
-        <view class="confirm-btn" bindtap='goToIndex' wx:if="{{isRegistered}}">
+        <view class="confirm-btn" bindtap='goToIndex' wx:if="{{userType}}">
           <text>进入主站</text>
         </view>
-        <view class="confirm-btn" bindtap='goToRegister' wx:if="{{!isRegistered}}">
+        <view class="confirm-btn" bindtap='goToRegister' wx:if="{{!userType}}" style='margin-bottom:0px;'>
           <text>注册</text>
         </view>
-        <view class="confirm-btn" bindtap='goToIndex' wx:if="{{!isRegistered}}">
+        <view class="confirm-btn" bindtap='goToIndex' wx:if="{{!userType}}" style='margin-top:10px;margin-bottom:0px;'>
           <text>逛一逛</text>
         </view>
-        <!--<view class="confirm-btn" bindtap='goToIndex'>
-          <text >我是雇主</text>
-        </view>-->
         <text class="copyright">版权为©2017~2018 上海海戈投资发展有限公司</text>
       </view>
     </view>

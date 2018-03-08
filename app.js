@@ -1,7 +1,39 @@
 //app.js
 App({
   onLaunch: function () {
-  
+    var that = this;
+    wx.checkSession({//校验登录状态
+      success: function () {//登录态未过期
+
+      },
+      fail: function () {//登录态已过期
+        wx.login({//重新登录
+          success:function(res){
+            if (res.code) {
+              //登录服务器换取登录凭证
+              that.wechatLogin(res.code)
+            }
+          }
+        })
+      }
+    })
+  },
+  wechatLogin: function (code) {//登录服务器换取登录凭证
+    var that = this;
+    wx.request({
+      url: that.globalData.domain + '/login',
+      data: {
+        code: code
+      },
+      success: function (res) {
+        var data = res.data;
+        console.log(res)
+        wx.setStorageSync('sessionId', data.sessionId);//存储服务器的sessionId作为登录凭证，具有一定时效性
+        that.globalData.header.cookie = 'JSESSIONID=' + data.sessionId;
+        wx.setStorageSync('userType', data.userType);//保存用户类型
+        that.getUserInfo();//获取用户信息
+      }
+    })
   },
   getUserInfo: function (cb) {
     var that = this;
@@ -11,56 +43,32 @@ App({
       console.log('getUserInfo-->'+userInfo.nickName)
       cb(userInfo);
     }
-    else{
-      //调用登录接口
-      wx.login({
+    else{  
+      wx.getUserInfo({
         success: function (res) {
-          if (res.code) {
-            //发起网络请求
-            wx.request({
-              url: that.globalData.domain + '/login',
-              header: that.globalData.header,
-              data: {
-                code: res.code
-              },
-              success: function (data) {
-                console.log(data)
-                wx.setStorageSync('sessionId', data.data);
-                that.globalData.header.cookie = 'JSESSIONID=' + data.data;
-                wx.getUserInfo({
-                  success: function (res) {
-                    var userInfo = res.userInfo
-                    var nickName = userInfo.nickName
-                    var avatarUrl = userInfo.avatarUrl
-                    var gender = userInfo.gender //性别 0：未知、1：男、2：女
-                    var province = userInfo.province
-                    var city = userInfo.city
-                    var country = userInfo.country
-                    console.log("获取用户信息成功" + userInfo, nickName, avatarUrl, gender, province, city, country);
-                    cb(res.userInfo)
-                    try{
-                      wx.setStorageSync('userInfo', res.userInfo);
-                      console.log('wx.setStorageSync.userInfo成功')
-                    } catch (e) {
-                      console.log('wx.setStorageSync.userInfo失败')
-                    }
-                   
-                  },
-                  fail: function (data) {
-                    console.log("获取用户信息失败" + data);
-                  }
-                })
-              },
-              fail: function () {
-
-              }
-            })
-          } else {
-            console.log('获取用户登录态失败！' + res.errMsg)
+          console.log(res)
+          cb(res.userInfo)
+          var userInfo = res.userInfo
+          var nickName = userInfo.nickName
+          var avatarUrl = userInfo.avatarUrl
+          var gender = userInfo.gender //性别 0：未知、1：男、2：女
+          var province = userInfo.province
+          var city = userInfo.city
+          var country = userInfo.country
+          var language= userInfo.language
+          console.log("获取用户信息成功", nickName, avatarUrl, gender, province, country, city, language);
+          try{
+            wx.setStorageSync('userInfo', res.userInfo);
+            console.log('wx.setStorageSync.userInfo成功')
+          } catch (e) {
+            console.log('wx.setStorageSync.userInfo失败')
           }
+        },
+        fail: function (data) {
+          console.log("获取用户信息失败" + data);
         }
-      });
-    }
+      })
+    }      
   },
   onShow: function () {
 
@@ -70,7 +78,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    domain:"http://127.0.0.1",
+    domain:"http://127.0.0.1/wechat",
     header: { 'cookie': '' } //这里还可以加入其它需要的请求头，比如'x-requested-with': 'XMLHttpRequest'表示ajax提交，微信的请求时不会带上这个的
   }
 })
