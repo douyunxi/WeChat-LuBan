@@ -33,8 +33,7 @@ Page({
       var userType=wx.getStorageSync('userType')
       console.log("userType-》" + userType)
       that.setData({
-        //userType: userType
-        userType: null
+        userType: userType
       })
       
       /*wx.request({

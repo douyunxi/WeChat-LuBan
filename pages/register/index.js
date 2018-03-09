@@ -3,7 +3,7 @@ var commonCityData = require('../../utils/city.js')
 var app = getApp();
 Page({
   data: {
-    userTypes: [{ value: 2, text: "我是墙纸工" }, { value: 1, text:"我要贴墙纸"}],
+    userTypes: [{ value: "WORKER", text: "我是墙纸工" }, { value: "EMPLOYER", text:"我要贴墙纸"}],
     userTypesText:[],
     selUserType: '请选择',
     selUserTypeValue:"",
@@ -26,7 +26,11 @@ Page({
     var address = e.detail.value.address;
     var mobile = e.detail.value.mobile;
     var postalcode = e.detail.value.postalcode;
-
+    var gender ="UNKNOW"
+    switch(app.globalData.userInfo.gender){
+      case 1: gender ="MAN";break;
+      case 1: gender = "WOMAN"; break;
+    }
     if (realName == ""){
       wx.showModal({
         title: '提示',
@@ -89,26 +93,27 @@ Page({
     } else {
       apiAddid = 0;
     }
+    console.log("gender->"+app.globalData.userInfo.gender)
     wx.request({
       url: app.globalData.domain + '/register/',
       header: app.globalData.header,
       data: {
         //token: app.globalData.token,
         //id: apiAddid,
-        provinceId: commonCityData.cityData[this.data.selProvinceIndex].id,
-        cityId: cityId,
-        districtId: districtId,
+        province: commonCityData.cityData[this.data.selProvinceIndex].id,
+        city: cityId,
+        district: districtId,
         address: address,
         nickname: app.globalData.userInfo.nickName,
         realName: realName,
         avatarUrl: app.globalData.userInfo.avatarUrl,
-        gender: app.globalData.userInfo.gender,
+        gender: gender,
         type: that.data.selUserTypeValue,
         mobile:mobile,
         postalcode: postalcode
       },
       success: function(res) {
-        if (res.data.code != 0) {
+        if (!res.data) {
           // 登录错误 
           wx.hideLoading();
           wx.showModal({
@@ -119,6 +124,7 @@ Page({
           return;
         }
         // 跳转到结算页面
+        wx.setStorageSync('userType', that.data.selUserTypeValue);
         wx.navigateBack({})
       }
     })
