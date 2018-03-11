@@ -19,23 +19,26 @@ Page({
     });
   },
   onLoad:function(){
+
+  },
+  onShow:function(){
     var that = this
     /*wx.setNavigationBarTitle({
       title: wx.getStorageSync('mallName')
     })*/
-    app.getUserInfo(function(userInfo){
-      app.globalData.userInfo=userInfo;
+    app.getUserInfo(function (userInfo) {
+      app.globalData.userInfo = userInfo;
       //更新数据
       that.setData({
         userInfo: userInfo
       });
       //是否注册用户
-      var userType=wx.getStorageSync('userType')
+      var userType = wx.getStorageSync('userType')
       console.log("userType-》" + userType)
       that.setData({
         userType: userType
       })
-      
+
       /*wx.request({
         url: app.globalData.domain+'/isRegistered',
         header: app.globalData.header,
@@ -47,9 +50,6 @@ Page({
         }
       });*/
     })
-    
-  },
-  onShow:function(){
   },
   onReady: function(){
     var that = this;

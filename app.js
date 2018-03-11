@@ -47,7 +47,9 @@ App({
       wx.getUserInfo({
         success: function (res) {
           console.log(res)
-          cb(res.userInfo)
+          if(cb){
+            cb(res.userInfo)
+          }
           var userInfo = res.userInfo
           var nickName = userInfo.nickName
           var avatarUrl = userInfo.avatarUrl
@@ -75,6 +77,9 @@ App({
   },
   onHide: function () {
 
+  },
+  onUnload: function () {
+    wx.setStorageSync('sessionId', "");
   },
   globalData: {
     userInfo: null,

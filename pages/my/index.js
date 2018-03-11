@@ -24,16 +24,17 @@ Page( {
           userListInfo: [ {
             icon: '../../images/iconfont-dingdan.png',
             text: '我的消息',
-            isunread: true,
             unreadNum: res.data.messages,
             url: "/pages/message/index"
           }, {
               icon: '../../images/iconfont-dingdan.png',
               text: '任务单',
+              unreadNum: res.data.tasks,
               url: "/pages/tasks/index"
             }, {
               icon: '../../images/iconfont-dingdan.png',
               text: '工资单',
+              unreadNum: res.data.task,
               url: "/pages/salary/index"
             }, {
               icon: '../../images/iconfont-dingdan.png',

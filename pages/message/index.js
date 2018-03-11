@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    messageList: [{
+    /*messageList: [{
         title: "新任务",
         content: "在北京朝阳区某某小区××楼××单元×××有一个贴墙纸任务，总面积1200平，施工材料××××，施工费2000元，施工时间2018.5.6 9：00",
         time: "2018.2.1 15:22:33",
@@ -17,23 +17,36 @@ Page({
         content: "热烈庆祝鲁班到家1.0.0版正式上线！ ",
         time: "2018.3.5 15:22:33",
         type:'message',
-        id: "1" }]
+        id: "1" }]*/
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that=this;
     wx.request({
       url: app.globalData.domain + '/getMessages',
       header: app.globalData.header,
       success: function (res) {
-
+        console.log(res)
+        var data=res.data;
+        var messageList=[];
+        for(var i=0;i<data.length;i++){
+          messageList.push({
+            id:data[i].id,
+            title: data[i].title,
+            content: data[i].content,
+            time: data[i].publishTime,
+            type:"message"
+          });
+        }
+        that.setData({
+          messageList: messageList
+        })
       }
     });
-    this.setData({
-      messageList: messageList
-    })
+    
   },
 
   /**

@@ -5,7 +5,7 @@
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>
   </view>
   <view class="info_list">
-    <block wx:for="{{userListInfo}}">
+    <block wx:for="{{userListInfo}}" wx:key="item.text">
         <messageItem icon="{{item.icon}}" title="{{item.text}}" isunread="{{item.isunread}}" unreadNum="{{item.unreadNum}}" url="{{item.url}}"/>
     </block>
   </view>
