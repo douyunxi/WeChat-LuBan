@@ -27,28 +27,28 @@ Page( {
             unreadNum: res.data.messages,
             url: "/pages/message/index"
           }, {
-              icon: '../../images/iconfont-dingdan.png',
-              text: '任务单',
-              unreadNum: res.data.tasks,
-              url: "/pages/tasks/index"
-            }, {
-              icon: '../../images/iconfont-dingdan.png',
-              text: '工资单',
-              unreadNum: res.data.task,
-              url: "/pages/salary/index"
-            }, {
-              icon: '../../images/iconfont-dingdan.png',
-              text: '个人信息',
-              url: "/pages/userInfo/index"
-            }, {
-              icon: '../../images/iconfont-kefu.png',
-              text: '联系客服',
-              url: '/pages/contactUs/index'
-            }, {
-              icon: '../../images/iconfont-help.png',
-              text: '常见问题',
-              url: '/pages/askAnswer/index'
-            }]
+            icon: '../../images/iconfont-dingdan.png',
+            text: '任务单',
+            unreadNum: res.data.tasks,
+            url: "/pages/tasks/index"
+          }, {
+            icon: '../../images/iconfont-dingdan.png',
+            text: '工资单',
+            unreadNum: res.data.task,
+            url: "/pages/salary/index"
+          }, {
+            icon: '../../images/iconfont-dingdan.png',
+            text: '个人信息',
+            url: "/pages/userInfo/index"
+          }, {
+            icon: '../../images/iconfont-kefu.png',
+            text: '联系客服',
+            url: '/pages/contactUs/index'
+          }, {
+            icon: '../../images/iconfont-help.png',
+            text: '常见问题',
+            url: '/pages/askAnswer/index'
+          }]
         });
       }
     });

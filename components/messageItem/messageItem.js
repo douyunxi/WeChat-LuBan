@@ -38,8 +38,7 @@ Component({
    */
   methods: {
     _gotoDetail:function(){
-      console.log(this.data.callback)
-      console.log(this.data)
+      console.log(this.data.url)
       if(this.data.callback){
         this.data.callback();
       }

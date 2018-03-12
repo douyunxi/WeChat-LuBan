@@ -17,7 +17,8 @@
     "pages/askAnswer/index",
     "pages/contactUs/index",
     "pages/contactUs/sendMessage",
-    "pages/userInfo/identificationCard"
+    "pages/userInfo/identificationCard",
+    "pages/talk/index"
   ],
   "window": {
     "backgroundTextStyle": "white",
@@ -40,7 +41,7 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/tasks/index",
+        "pagePath": "pages/talk/index",
         "iconPath": "images/chat.png",
         "selectedIconPath": "images/chat_active.png",
         "text": "论坛"
