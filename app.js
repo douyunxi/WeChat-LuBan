@@ -7,7 +7,7 @@ App({
 
       },
       fail: function () {//登录态已过期
-        wx.removeStorageSync('sessionId');
+        wx.clearStorageSync()
         wx.login({//重新登录
           success:function(res){
             if (res.code) {
@@ -81,8 +81,8 @@ App({
   },
   globalData: {
     userInfo: null,
-    domain:"http://127.0.0.1/wechat",
-    //domain: "http://www.oceanb.cn/luban/wechat",
+    //domain:"http://127.0.0.1/wechat",
+    domain: "http://www.oceanb.cn/luban/wechat",
     header: { 'cookie': '' } //这里还可以加入其它需要的请求头，比如'x-requested-with': 'XMLHttpRequest'表示ajax提交，微信的请求时不会带上这个的
   }
 })
