@@ -12,10 +12,15 @@
   margin: 1%;
 }
 .message-block .title{
-  display: block;
+  display: inline-block;
   font-size: 18px;
   font-weight: 600;
   color: #576b95;
+}
+.message-block .readed{
+  width:30px;
+  height:30px;
+  float:right;
 }
 .message-block .content{
   display: block;

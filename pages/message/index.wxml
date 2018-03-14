@@ -1,6 +1,6 @@
 <!--pages/my/message/messageDetail.wxml-->
 <view>
   <block wx:for="{{messageList}}" wx:key="{{item.id}}">
-    <messageBlock title="{{item.title}}" content="{{item.content}}" time="{{item.time}}" type="{{item.type}}"/>
+    <messageBlock title="{{item.title}}" content="{{item.content}}" time="{{item.time}}" type="{{item.type}}" data_id="{{item.id}}"/>
   </block>
 </view>

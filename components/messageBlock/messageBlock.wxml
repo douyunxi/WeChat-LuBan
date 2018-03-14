@@ -1,7 +1,7 @@
 <!--components/messageBlock/messageBlock.wxml 消息详情-->
-<view class="message-block unread" bindtap='read'>
-  <text class="title">{{title}}</text>
-  <image wx:if="{{icon}}" src="{{icon}}"></image>
+<view class="message-block unread" bindtap='read' hidden="{{!isShow}}">
+  <text class="title" data-id="{{data_id}}">{{title}}</text>
+  <image wx:if="{{icon}}" src="{{icon}}" class='readed'></image>
    
   
   <text class="content">{{content}}</text>

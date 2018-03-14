@@ -37,8 +37,8 @@ Page({
             id:data[i].id,
             title: data[i].title,
             content: data[i].content,
-            time: data[i].publishTime,
-            type:"message"
+            time: data[i].time,
+            type: data[i].type
           });
         }
         that.setData({

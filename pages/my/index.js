@@ -13,7 +13,9 @@ Page( {
         userInfo: userInfo
       })
     });
-
+  },
+  onShow() {
+    var that = this;
     //设置用户信息列表
     wx.request({
       url: app.globalData.domain + '/getMyStatus',
@@ -21,7 +23,7 @@ Page( {
       success: function (res) {
         console.log("获得用户状态列表", res.data)
         that.setData({
-          userListInfo: [ {
+          userListInfo: [{
             icon: '../../images/iconfont-dingdan.png',
             text: '我的消息',
             unreadNum: res.data.messages,
