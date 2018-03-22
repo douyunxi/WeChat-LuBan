@@ -13,6 +13,7 @@
     "pages/message/index",
     "pages/tasks/taskDetail",
     "pages/tasks/index",
+    "pages/userInfo/userInfo",
     "pages/userInfo/mobile",
     "pages/askAnswer/index",
     "pages/contactUs/index",

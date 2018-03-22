@@ -1,0 +1,10 @@
+<!--pages/userInfo/index.wxml 我的———》个人信息-->
+<view class="container">
+  <view  bindtap="bindViewTap" class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </view>
+  <block wx:for="{{userListInfo}}">
+        <infoItem icon="{{item.icon}}" title="{{item.title}}" content="{{item.content}}" url="{{item.url}}"/>
+    </block>
+</view>
