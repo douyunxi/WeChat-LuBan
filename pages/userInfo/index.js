@@ -3,7 +3,10 @@ var commonCityData = require('../../utils/city.js')
 var app = getApp();
 Page({
   data: {
-    userTypes: [{ value: "WORKER", text: "我是墙纸工" }, { value: "EMPLOYER", text:"我要贴墙纸"}],
+    userGenders: [{ value: "MAN", text: "男" }, { value: "WOMAN", text: "女" }],
+    userGendersText: ["男", "女"],
+    selUserGender: '请选择',
+    userTypes: [{ value: "WORKER", text: "我是墙纸工" }, { value: "EMPLOYER", text: "我要贴墙纸" }/*, { value: "ADMIN", text: "管理员" }*/],
     userTypesText:[],
     selUserType: '请选择',
     selUserTypeValue:"",
@@ -22,7 +25,6 @@ Page({
     wx.navigateBack({});//关闭当前页面，返回上一页面
   },
   bindSave: function(e) {
-    console.log(e)
     var that = this;
     var realName = e.detail.value.realName;
     var address = e.detail.value.address;
@@ -88,20 +90,11 @@ Page({
       })
       return
     }*/
-    var apiAddoRuPDATE = "add";
-    var apiAddid = that.data.id;
-    if (apiAddid) {
-      apiAddoRuPDATE = "update";
-    } else {
-      apiAddid = 0;
-    }
     console.log("gender->"+app.globalData.userInfo.gender)
     wx.request({
-      url: app.globalData.domain + '/register/',
+      url: app.globalData.domain + '/updateUserInfo/',
       header: app.globalData.header,
       data: {
-        //token: app.globalData.token,
-        //id: apiAddid,
         province: commonCityData.cityData[this.data.selProvinceIndex].id,
         city: cityId,
         district: districtId,
@@ -125,20 +118,41 @@ Page({
           })
           return;
         }
+        wx.showToast({
+          title: '保存成功',
+          icon: 'success',
+          duration: 3000,
+          complete: function () {
+            that.setData({
+              isShow: false
+            })
+          }
+        })
         // 跳转到结算页面
         wx.setStorageSync('userType', that.data.selUserTypeValue);
         wx.navigateBack({})
       }
     })
   },
-  initUserType:function(){
-    var userTypesText = [];
+  initUserGender:function(gender){
+    for (var i = 0; i < this.data.userGenders.length; i++) {
+      if (this.data.userGenders[i].value == gender) {
+        return this.data.userGenders[i].text;
+      }
+    }
+  },
+  initUserType:function(type){
+    var userType = "", userTypesText=[]
     for (var i = 0; i < this.data.userTypes.length;i++){
-      userTypesText.push(this.data.userTypes[i].text);
+      userTypesText.push(this.data.userTypes[i].text)
+      if(this.data.userTypes[i].value==type){
+        userType=this.data.userTypes[i].text;
+      }
     }
     this.setData({
       userTypesText: userTypesText
-    });
+    })
+    return userType;
   },
   initCityData:function(level, obj){
     if(level == 1){
@@ -170,8 +184,13 @@ Page({
     }
     
   },
+  bindUserGenderChange:function(event){
+    this.setData({
+      selUserGender: this.data.userGenders[event.detail.value].text,
+      selUserGenderValue: this.data.userGenders[event.detail.value].value
+    })
+  },
   bindUserTypeChange: function (event){
-    console.log(event)
     this.setData({
       selUserType: this.data.userTypes[event.detail.value].text,
       selUserTypeValue: this.data.userTypes[event.detail.value].value
@@ -208,14 +227,12 @@ Page({
       })
     }
   },
-  onLoad: function (e) {
+  onShow: function (e) {
     console.log("onLoad")
     var that = this;
-    //获取用户信息
-    this.initUserType();
-    this.initCityData(1);
-    // 初始化原数据
+    //初始化原数据
     wx.showLoading();
+    //获取用户信息
     wx.request({
       url: app.globalData.domain + '/getUserInfo',
       header: app.globalData.header,
@@ -224,7 +241,8 @@ Page({
         var data=res.data;
         console.log(res)
         that.setData({
-          selUserType: data.type,
+          selUserGender:that.initUserGender(data.gender),
+          selUserType: that.initUserType(data.type),
           selProvince: data.province.text,
           selCity: data.city.text,
           selDistrict: data.district ? data.district.text:"",
@@ -236,6 +254,22 @@ Page({
             postalcode: data.postalcode
           }
         });
+        that.initCityData(1);
+        var cityIndex=null
+        for (var i = 0; i < commonCityData.cityData.length;i++){
+          if (commonCityData.cityData[i].id == data.province.id){
+            that.initCityData(2, commonCityData.cityData[i]);
+            cityIndex=i;
+            break;
+          }
+        }
+        if (data.district){
+          for (var j = 0; j < commonCityData.cityData[cityIndex].cityList.length;j++){
+            if (commonCityData.cityData[cityIndex].cityList[j]==data.city.id){
+              that.initCityData(3, commonCityData.cityData[cityIndex].cityList[j]);
+            }
+          }
+        }
         var addressData={}
         addressData.provinceId=data.province.id
         addressData.cityId = data.city.id
@@ -262,9 +296,6 @@ Page({
       }
     }
    },
-  selectCity: function () {
-    
-  },
   readFromWx : function () {//从微信中读取
     let that = this;
     wx.chooseAddress({
