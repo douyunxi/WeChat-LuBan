@@ -3,6 +3,9 @@ var commonCityData = require('../../utils/city.js')
 var app = getApp();
 Page({
   data: {
+    userGenders: [{ value: "MAN", text: "男" }, { value: "WOMAN", text: "女" }],
+    userGendersText: ["男", "女"],
+    selUserGender: '请选择',
     userTypes: [{ value: "WORKER", text: "我是墙纸工" }, { value: "EMPLOYER", text:"我要贴墙纸"}],
     userTypesText:[],
     selUserType: '请选择',
@@ -21,16 +24,14 @@ Page({
     wx.navigateBack({});//关闭当前页面，返回上一页面
   },
   bindSave: function(e) {
+    console.log(e)
     var that = this;
     var realName = e.detail.value.realName;
     var address = e.detail.value.address;
     var mobile = e.detail.value.mobile;
     var postalcode = e.detail.value.postalcode;
-    var gender ="UNKNOW"
-    switch(app.globalData.userInfo.gender){
-      case 1: gender ="MAN";break;
-      case 1: gender = "WOMAN"; break;
-    }
+    var gender = that.data.selUserGenderValue;
+    var type = that.data.selUserTypeValue;
     if (realName == ""){
       wx.showModal({
         title: '提示',
@@ -39,7 +40,23 @@ Page({
       })
       return
     }
-    if (mobile == ""){
+    if (!gender) {
+      wx.showModal({
+        title: '提示',
+        content: '请选择性别',
+        showCancel: false
+      })
+      return
+    }
+    if (!type) {
+      wx.showModal({
+        title: '提示',
+        content: '请选择用户类型',
+        showCancel: false
+      })
+      return
+    }
+    if (!mobile){
       wx.showModal({
         title: '提示',
         content: '请填写手机号码',
@@ -70,7 +87,7 @@ Page({
     } else {
       districtId = commonCityData.cityData[this.data.selProvinceIndex].cityList[this.data.selCityIndex].districtList[this.data.selDistrictIndex].id;
     }
-    if (address == ""){
+    if (!address){
       wx.showModal({
         title: '提示',
         content: '请填写详细地址',
@@ -93,7 +110,6 @@ Page({
     } else {
       apiAddid = 0;
     }
-    console.log("gender->"+app.globalData.userInfo.gender)
     wx.request({
       url: app.globalData.domain + '/register/',
       header: app.globalData.header,
@@ -108,7 +124,7 @@ Page({
         realName: realName,
         avatarUrl: app.globalData.userInfo.avatarUrl,
         gender: gender,
-        type: that.data.selUserTypeValue,
+        type: type,
         mobile:mobile,
         postalcode: postalcode
       },
@@ -167,6 +183,12 @@ Page({
       });
     }
     
+  },
+  bindUserGenderChange: function (event) {
+    this.setData({
+      selUserGender: this.data.userGenders[event.detail.value].text,
+      selUserGenderValue: this.data.userGenders[event.detail.value].value
+    })
   },
   bindUserTypeChange: function (event){
     console.log(event)

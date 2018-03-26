@@ -8,6 +8,14 @@
             </view>
         </view>
         <view class="row-wrap">
+          <view class="label">性别</view>
+          <picker bindchange="bindUserGenderChange" value="{{gender}}" range="{{userGendersText}}">
+            <view class="picker {{selUserGender=='请选择'?'hui':''}}">
+              {{selUserGender}}
+            </view>
+          </picker>
+        </view>
+        <view class="row-wrap">
           <view class="label">用户类型</view>
           <picker bindchange="bindUserTypeChange" value="{{index}}" range="{{userTypesText}}">
             <view class="picker {{selUserType=='请选择'?'hui':''}}">
