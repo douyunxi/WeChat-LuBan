@@ -3,3 +3,10 @@
   <infoItem icon="/images/iconfont-dingdan.png" title="留言" url="/pages/contactUs/sendMessage"/>
   <infoItem icon="/images/iconfont-kefu.png" title="拨打电话" content="13910000000" callback="phoneCall"/>
 </view>
+<button open-type="contact" style="height:100px;"/>
+<contact-button 
+  type="default-dark" 
+  size="20"
+  session-from="weapp"
+>
+</contact-button>
