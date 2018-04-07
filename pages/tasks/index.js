@@ -1,11 +1,12 @@
 // pages/tasks/index.js
+var app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    unfinishedTask: [{
+    /*unfinishedTask: [{
       icon: '../../images/iconfont-dingdan.png',
       text: '某某小区项目',
       url: "/pages/tasks/taskDetail"
@@ -38,14 +39,14 @@ Page({
       icon: '../../images/icon-right.png',
       text: '某某小区项目',
       url: "/pages/tasks/taskDetail"
-    }]
+    }]*/
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    
   },
 
   /**
@@ -59,7 +60,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var that = this;
+    wx.request({
+      url: app.globalData.domain + '/getTasks',
+      header: app.globalData.header,
+      success: function (res) {
+        console.log(res)
+        var data = res.data;
+        that.setData({
+          unfinishedTask: data.unfinishedTask,
+          finishedTask: data.finishedTask
+        })
+      }
+    });
   },
 
   /**

@@ -2,22 +2,22 @@
 <view>
   <view class="show-card">
     <view class="title">待完成</view>
-    <view class="number">3</view>
+    <view class="number">{{unfinishedTask.length}}</view>
   </view>
   <view class="show-card">
     <view class="title">已完成</view>
-    <view class="number">5</view>
+    <view class="number">{{finishedTask.length}}</view>
   </view>
 </view>
 
 <view class="unfinished-tasks container">
-  <block wx:for="{{unfinishedTask}}">
-    <messageItem icon="{{item.icon}}" title="{{item.text}}" isunread="{{item.isunread}}" unreadNum="{{item.unreadNum}}" url="{{item.url}}"/>
+  <block wx:for="{{unfinishedTask}}" wx:key="{{item.id}}">
+    <messageItem icon="../../images/iconfont-dingdan.png" title="{{item.title}}" url="/pages/tasks/taskDetail?id={{item.id}}"/>
   </block>
 </view>
 
 <view class="finished-tasks container">
-  <block wx:for="{{finishedTask}}">
-    <messageItem icon="{{item.icon}}" title="{{item.text}}" isunread="{{item.isunread}}" unreadNum="{{item.unreadNum}}" url="{{item.url}}"/>
+  <block wx:for="{{finishedTask}}" wx:key="{{item.id}}">
+    <messageItem icon="../../images/icon-right.png" title="{{item.title}}" url="/pages/tasks/taskDetail?id={{item.id}}"/>
   </block>
 </view>
