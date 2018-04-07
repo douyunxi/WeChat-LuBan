@@ -232,38 +232,6 @@ Page({
     var that = this;
     this.initUserType();
     this.initCityData(1);
-    var id = e.id;
-    if (id) {
-      // 初始化原数据
-      wx.showLoading();
-      wx.request({
-        url: 'https://api.it120.cc/' + app.globalData.subDomain + '/user/shipping-address/detail',
-        data: {
-          token: app.globalData.token,
-          id: id
-        },
-        success: function (res) {
-          wx.hideLoading();
-          if (res.data.code == 0) {
-            that.setData({
-              id:id,
-              addressData: res.data.data,
-              selProvince: res.data.data.provinceStr,
-              selCity: res.data.data.cityStr,
-              selDistrict: res.data.data.areaStr
-              });
-            that.setDBSaveAddressId(res.data.data);
-            return;
-          } else {
-            wx.showModal({
-              title: '提示',
-              content: '无法获取快递地址数据',
-              showCancel: false
-            })
-          }
-        }
-      })
-    }
   },
   setDBSaveAddressId: function(data) {
     var retSelIdx = 0;
@@ -286,34 +254,12 @@ Page({
   selectCity: function () {
     
   },
-  deleteAddress: function (e) {
-    var that = this;
-    var id = e.currentTarget.dataset.id;
-    wx.showModal({
-      title: '提示',
-      content: '确定要删除该收货地址吗？',
-      success: function (res) {
-        if (res.confirm) {
-          wx.request({
-            url: 'https://api.it120.cc/' + app.globalData.subDomain + '/user/shipping-address/delete',
-            data: {
-              token: app.globalData.token,
-              id: id
-            },
-            success: (res) => {
-              wx.navigateBack({})
-            }
-          })
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }
-    })
-  },
   readFromWx : function () {//从微信中读取
     let that = this;
+    console.log("readFromWx")
     wx.chooseAddress({
       success: function (res) {
+        console.log(res)
         let provinceName = res.provinceName;
         let cityName = res.cityName;
         let diatrictName = res.countyName;
