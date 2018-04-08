@@ -74,10 +74,27 @@ App({
     }      
   },
   onShow: function () {
-
+    var that = this;
+    wx.request({
+      url: that.globalData.domain + '/getUserInfo',
+      header: that.globalData.header,
+      success: function (res) {
+       if(!res.data){
+         console.log("重新登录")
+         wx.login({//重新登录
+           success: function (res) {
+             if (res.code) {
+               //登录服务器换取登录凭证
+               that.wechatLogin(res.code)
+             }
+           }
+         })
+       }
+      }
+    })
   },
   onHide: function () {
-
+    
   },
   globalData: {
     userInfo: null,

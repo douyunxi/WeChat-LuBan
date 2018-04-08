@@ -2,7 +2,7 @@
 <view class="container">
     <view>
         <swiper class="swiper_box" indicator-dots="{{indicatorDots}}" vertical="{{vertical}}"
-                autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange="swiperchange" circular>
+                autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular>
                 <swiper-item>
                     <image src="/images/banner1.png" class="slide-image"/>
                 </swiper-item>
