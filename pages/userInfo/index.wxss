@@ -85,3 +85,14 @@ picker {
 .hui{
     color: #777;
 }
+.red{
+  color:#e64340;
+  position: relative;
+}
+.with_arrow{
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  width: 15px;
+  height: 15px;
+}

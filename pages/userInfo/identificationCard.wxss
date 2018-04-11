@@ -11,6 +11,9 @@ input{
 view.img{
    text-align: center;
 }
+image{
+  border-radius:5px;
+}
 button{
   width: 90%;
   margin: 20px;

@@ -1,11 +1,14 @@
 // pages/userInfo/identificationCard.js
+var app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    idCardFrontPath:'/images/idcard.png',
+    idCardBackPath:'',
+    idCardWithPersonPath:'/images/user-with-idcard.png'
   },
 
   /**
@@ -63,7 +66,8 @@ Page({
   onShareAppMessage: function () {
   
   },
-  chooseImage:function(){
+  chooseImage1:function(){
+    var that=this;
     wx.chooseImage({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -71,7 +75,47 @@ Page({
       success: function (res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths
+        //console.log(tempFilePaths)
+        that.setData({
+          //将临时变量赋值给已经在data中定义好的变量
+          idCardFrontPath: tempFilePaths[0]
+        })
       }
     })
+  },
+  chooseImage3: function () {
+    var that = this;
+    wx.chooseImage({
+      count: 1, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        var tempFilePaths = res.tempFilePaths
+        //console.log(tempFilePaths)
+        that.setData({
+          //将临时变量赋值给已经在data中定义好的变量
+          idCardWithPersonPath: tempFilePaths
+        })
+      }
+    })
+  },
+  uploadFile:function(){
+    console.log(this.data.idCardFrontPath)
+    if (this.data.idCardFrontPath !="/images/idcard.png"){
+      wx.uploadFile({
+        url: app.globalData.domain + '/uploadIdCard/',
+        header: app.globalData.header,
+        filePath: this.data.idCardFrontPath,
+        name: 'idCardFront',
+        formData: {
+          'fileName': 'fileName'
+        },
+        success: function (res) {
+          var data = res.data
+          //do something
+        }
+      })
+    }
   }
 })

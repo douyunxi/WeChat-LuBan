@@ -295,7 +295,12 @@ Page({
         }
       }
     }
-   },
+  },
+  gotoCertification:function(){
+    wx.navigateTo({
+      url: '/pages/userInfo/identificationCard'
+    });
+  },
   readFromWx : function () {//从微信中读取
     let that = this;
     wx.chooseAddress({
