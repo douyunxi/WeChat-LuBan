@@ -64,9 +64,9 @@
     <view class="form-box">
       <view class="row-wrap" bindtap='gotoCertification'>
           <view class="label">实名认证</view>
-          <view class="label-right red">
-              未完成
-              <image src="../../images/icon-arrowdown.png" class="with_arrow"></image>
+          <view class="label-right {{userCertificationStatus!='已完成'?'red':'hui'}}">
+              {{userCertificationStatus}}
+              <image wx:if="{{userCertificationStatus=='未完成'||userCertificationStatus=='未通过'}}" src="../../images/icon-arrowdown.png" class="with_arrow"></image>
           </view>
       </view>
     </view>

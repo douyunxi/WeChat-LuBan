@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    idCardNum:'',
     idCardFrontPath:'/images/idcard.png',
     idCardBackPath:'',
     idCardWithPersonPath:'/images/user-with-idcard.png'
@@ -66,6 +67,11 @@ Page({
   onShareAppMessage: function () {
   
   },
+  getIdCardNum:function(e){
+    this.setData({
+      idCardNum: e.detail.value
+    })
+  },
   chooseImage1:function(){
     var that=this;
     wx.chooseImage({
@@ -75,7 +81,6 @@ Page({
       success: function (res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths
-        //console.log(tempFilePaths)
         that.setData({
           //将临时变量赋值给已经在data中定义好的变量
           idCardFrontPath: tempFilePaths[0]
@@ -92,16 +97,31 @@ Page({
       success: function (res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths
-        //console.log(tempFilePaths)
         that.setData({
           //将临时变量赋值给已经在data中定义好的变量
-          idCardWithPersonPath: tempFilePaths
+          idCardWithPersonPath: tempFilePaths[0]
         })
       }
     })
   },
-  uploadFile:function(){
-    console.log(this.data.idCardFrontPath)
+  uploadFile1:function(){
+    var that=this;
+    if (that.data.idCardNum == "") {
+      wx.showModal({
+        title: '提示',
+        content: '请填写身份证号码',
+        showCancel: false
+      })
+      return
+    }
+    else if (that.data.idCardNum.length!=18){
+      wx.showModal({
+        title: '提示',
+        content: '请填写正确的身份证号码',
+        showCancel: false
+      })
+      return
+    }
     if (this.data.idCardFrontPath !="/images/idcard.png"){
       wx.uploadFile({
         url: app.globalData.domain + '/uploadIdCard/',
@@ -109,13 +129,60 @@ Page({
         filePath: this.data.idCardFrontPath,
         name: 'idCardFront',
         formData: {
-          'fileName': 'fileName'
+          'fileName': 'idCardFront'
         },
         success: function (res) {
           var data = res.data
-          //do something
+          if(data){
+            that.uploadFile3();
+          }
         }
       })
+    }
+    else{
+      wx.showModal({
+        title: '提示',
+        content: '请选择身份证正面照片',
+        showCancel: false
+      })
+      return
+    }
+  },
+  uploadFile3: function () {
+    var that = this;
+    if (this.data.idCardWithPersonPath != "/images/user-with-idcard.png") {
+      wx.uploadFile({
+        url: app.globalData.domain + '/uploadIdCard/',
+        header: app.globalData.header,
+        filePath: this.data.idCardWithPersonPath,
+        name: 'idCardFront',
+        formData: {
+          'fileName': 'idCardWithPersonPath'
+        },
+        success: function (res) {
+          var data = res.data
+          if (data) {
+            wx.showToast({
+              title: '保存成功',
+              icon: 'success',
+              duration: 3000,
+              complete: function () {
+                // 跳转到上级页面
+                wx.navigateBack({})
+              }
+            })
+            
+          }
+        }
+      })
+    }
+    else {
+      wx.showModal({
+        title: '提示',
+        content: '请选择手持身份证正面照片',
+        showCancel: false
+      })
+      return
     }
   }
 })

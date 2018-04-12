@@ -19,6 +19,7 @@ Page({
     selProvinceIndex:0,
     selCityIndex:0,
     selDistrictIndex:0,
+    userCertificationStatus:'未完成',
     userInfo:{}
   },
   bindCancel:function () {
@@ -128,7 +129,7 @@ Page({
             })
           }
         })
-        // 跳转到结算页面
+        // 跳转到上级页面
         wx.setStorageSync('userType', that.data.selUserTypeValue);
         wx.navigateBack({})
       }
@@ -240,6 +241,14 @@ Page({
         wx.hideLoading();
         var data=res.data;
         console.log(res)
+        var userCertificationStatus = '未完成'
+        console.log(data.certification)
+        switch (data.certification) {
+          case 'NO_START': userCertificationStatus = '未完成'; break;
+          case 'CHECKING': userCertificationStatus = '审核中'; break;
+          case 'NOT_PASS': userCertificationStatus = '未通过'; break;
+          case 'FINISHED': userCertificationStatus = '已完成'; break;
+        }
         that.setData({
           selUserGender:that.initUserGender(data.gender),
           selUserType: that.initUserType(data.type),
@@ -247,6 +256,7 @@ Page({
           selCity: data.city.text,
           selDistrict: data.district ? data.district.text:"",
           addressData: data.address,
+          userCertificationStatus: userCertificationStatus,
           userInfo:{
             realName:data.realName,
             mobile: data.mobile,
@@ -254,6 +264,7 @@ Page({
             postalcode: data.postalcode
           }
         });
+        
         that.initCityData(1);
         var cityIndex=null
         for (var i = 0; i < commonCityData.cityData.length;i++){
@@ -297,9 +308,11 @@ Page({
     }
   },
   gotoCertification:function(){
-    wx.navigateTo({
-      url: '/pages/userInfo/identificationCard'
-    });
+    if (this.data.userCertificationStatus == '未完成' || this.data.userCertificationStatus == '未通过'){
+      wx.navigateTo({
+        url: '/pages/userInfo/identificationCard'
+      });
+    }
   },
   readFromWx : function () {//从微信中读取
     let that = this;

@@ -1,10 +1,10 @@
 <!--pages/userInfo/identificationCard.wxml 我的——》个人信息——》身份认证-->
 <view class='container'>
   <!--<label>身份证号码：</label>-->
-  <input placeholder='请输入身份证号码'/>
+  <input type="idcard" focus="true" placeholder='请输入身份证号码' bindblur='getIdCardNum'/>
   <view class='img'>
     <image src='{{idCardFrontPath}}' bindtap='chooseImage1'/>
     <image src='{{idCardWithPersonPath}}' bindtap='chooseImage3'/>
   </view>
-  <button type='primary' bindtap='uploadFile'>上传</button>
+  <button type='primary' bindtap='uploadFile1'>上传</button>
 </view>
