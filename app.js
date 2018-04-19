@@ -1,7 +1,7 @@
 //app.js
 App({
   onLaunch: function () {
-    var that = this;
+    /*var that = this;
     wx.checkSession({//校验登录状态
       success: function () {//登录态未过期
 
@@ -17,7 +17,7 @@ App({
           }
         })
       }
-    })
+    })*/
   },
   wechatLogin: function (code) {//登录服务器换取登录凭证
     var that = this;
@@ -31,7 +31,7 @@ App({
         wx.setStorageSync('sessionId', data.sessionId);//存储服务器的sessionId作为登录凭证，具有一定时效性
         that.globalData.header.cookie = 'JSESSIONID=' + data.sessionId;
         wx.setStorageSync('userType', data.userType);//保存用户类型
-        that.getUserInfo();//获取用户信息
+        //that.getUserInfo();//获取用户信息
       }
     })
   },
@@ -74,7 +74,7 @@ App({
     }      
   },
   onShow: function () {
-    var that = this;
+    /*var that = this;
     wx.request({
       url: that.globalData.domain + '/getUserInfo',
       header: that.globalData.header,
@@ -90,6 +90,39 @@ App({
            }
          })
        }
+      }
+    })*/
+    var that = this;
+    wx.checkSession({//校验登录状态
+      success: function () {//登录态未过期
+        wx.request({
+          url: that.globalData.domain + '/getUserInfo',
+          header: that.globalData.header,
+          success: function (res) {
+            if (!res.data) {
+              console.log("重新登录")
+              wx.login({//重新登录
+                success: function (res) {
+                  if (res.code) {
+                    //登录服务器换取登录凭证
+                    that.wechatLogin(res.code)
+                  }
+                }
+              })
+            }
+          }
+        })
+      },
+      fail: function () {//登录态已过期
+        wx.clearStorageSync()
+        wx.login({//重新登录
+          success: function (res) {
+            if (res.code) {
+              //登录服务器换取登录凭证
+              that.wechatLogin(res.code)
+            }
+          }
+        })
       }
     })
   },
