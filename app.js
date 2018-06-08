@@ -30,8 +30,8 @@ App({
         var data = res.data;
         wx.setStorageSync('sessionId', data.sessionId);//存储服务器的sessionId作为登录凭证，具有一定时效性
         that.globalData.header.cookie = 'JSESSIONID=' + data.sessionId;
-        wx.setStorageSync('userType', data.userType);//保存用户类型
-        //that.getUserInfo();//获取用户信息
+        //wx.setStorageSync('userType', data.userType);//保存用户类型
+        that.getUserInfo();//获取用户信息
       }
     })
   },
@@ -68,7 +68,8 @@ App({
           }
         },
         fail: function (data) {
-          console.log("获取用户信息失败" + data);
+          console.log("获取用户信息失败" );
+          console.log(data);
         }
       })
     }      
@@ -131,8 +132,8 @@ App({
   },
   globalData: {
     userInfo: null,
-    //domain:"http://127.0.0.1/wechat",
-    domain: "https://www.oceanb.cn/luban/wechat",
+    domain:"http://127.0.0.1/wechat",
+    //domain: "https://www.oceanb.cn/luban/wechat",
     header: { 'cookie': '' } //这里还可以加入其它需要的请求头，比如'x-requested-with': 'XMLHttpRequest'表示ajax提交，微信的请求时不会带上这个的
   }
 })

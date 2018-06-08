@@ -19,7 +19,9 @@
     "pages/contactUs/index",
     "pages/contactUs/sendMessage",
     "pages/userInfo/identificationCard",
-    "pages/talk/index"
+    "pages/talk/index",
+    "pages/mall/index",
+    "pages/register/getUserInfo"
   ],
   "window": {
     "backgroundTextStyle": "white",
@@ -46,6 +48,12 @@
         "iconPath": "images/chat.png",
         "selectedIconPath": "images/chat_active.png",
         "text": "论坛"
+      },
+      {
+        "pagePath": "pages/mall/index",
+        "iconPath": "images/chat.png",
+        "selectedIconPath": "images/chat_active.png",
+        "text": "商城"
       },
       {
         "pagePath": "pages/my/index",
